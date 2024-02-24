@@ -5,6 +5,8 @@ import TitleText from '../../title-text-common/page';
 type Props = {}
 
 const AlumiPage = (props: Props) => {
+  const alumiImage1 = '/public/alumni/alumni1.png'
+
   return (
 
     <>
@@ -17,7 +19,7 @@ const AlumiPage = (props: Props) => {
         name={'Paul Buchheit'}
         position={'Inventor of Gmail'}
         description={'Google employee #23, inventor of Gmail and now an angel investor.Credited with suggesting Googles now-famous motto, “Dont be evil.”'}
-        imgSrc={'/public/alumni/alumni1.png'}
+        imgSrc={alumiImage1}
     />
     <AlumniCard
         name={'Larry Hornbeck'}
