@@ -3,18 +3,23 @@
 
 // components/Form.js
 
-// components/Form.js
-
 import { Form, Field } from 'react-final-form';
 
+interface FormValues {
+    firstName?: string;
+    lastName?: string;
+    email?: string;
+    dob?: string;
+  }
+  
+
 const MyForm = () => {
-  const onSubmit = (values) => {
+  const onSubmit = (values : any) => {
     console.log('Form values:', values);
-    // Handle form submission here
   };
 
-  const validate = (values) => {
-    const errors = {};
+  const validate = (values : any) => {
+    const errors: Partial<FormValues> = {};
 
     if (!values.firstName) {
       errors.firstName = 'First name is required';
