@@ -12,7 +12,7 @@ export default function Home() {
         <Navbar/>
         <Heropage/>
         <AboutProgramPage/>
-        <Formpage/>
+        <Formpage />
         <LeapAdvantagePage/>
         <StudentAckPage/>
         <AlumiPage/>
