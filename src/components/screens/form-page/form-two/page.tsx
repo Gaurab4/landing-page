@@ -96,6 +96,7 @@ const SecondFormPage = (props: Props) => {
   };
 
   return (
+    <div className="w-[1300px] h-[647px]"> 
     <Form
       onSubmit={onSubmitFinal}
       render={({ handleSubmit }) => (
@@ -128,7 +129,7 @@ const SecondFormPage = (props: Props) => {
 
           {/* Personal Info Text  */}
           <div className="pl-6 pt-4 pb-8 font-[400] text-[20px]">
-            <p>Let&apos;s Enter Your Personal Details</p>
+            <p>Enter your current mailing address</p>
           </div>
 
           {/* Address Section */}
@@ -313,6 +314,7 @@ const SecondFormPage = (props: Props) => {
         </form>
       )}
     />
+    </div>
   );
 };
 
