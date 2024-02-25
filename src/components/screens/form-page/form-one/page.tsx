@@ -18,23 +18,27 @@ const MyFormFirst = (props: Props) => {
   const { setIsFirstSave, currentStep } = props;
 
   const getFormDataFromLocalStorage = (): FormValues => {
-    const formData = localStorage.getItem("formValues");
+    let formData;
+    if (typeof window !== 'undefined') {
+    formData = localStorage.getItem("formValues");
+    }else {
+      // Handle the case where localStorage is not available
+      console.error("localStorage is not available");
+    }
     return formData ? JSON.parse(formData) : {};
   };
 
   const initialValues: FormValues = getFormDataFromLocalStorage();
 
   const onSubmit = (values: FormValues) => {
-    try {
+    if (typeof window !== 'undefined') {
       localStorage.setItem('formValues', JSON.stringify(values));
       setIsFirstSave(true);
-    } catch (error) {
-      // Handle the error gracefully, such as logging it or providing fallback behavior
-      console.error("Error setting form values:", error);
-      // Provide fallback behavior, such as redirecting or displaying an error message
+    } else {
+      // Handle the case where localStorage is not available
+      console.error("localStorage is not available");
     }
   };
-  
 
 
   const validate = (values: FormValues) => {

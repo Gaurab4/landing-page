@@ -88,15 +88,16 @@ const SecondFormPage = (props: Props) => {
   };
 
   const onSubmitFinal = (values: any) => {
-    try {
+    if (typeof window !== 'undefined') {
       localStorage.setItem('form2Values', JSON.stringify(values));
-      setIsFirstSave(true);
-    } catch (error) {
-      // Handle the error gracefully, such as logging it or providing fallback behavior
-      console.error("Error setting form values:", error);
-      // Provide fallback behavior, such as redirecting or displaying an error message
+    } else {
+      // Handle the case where localStorage is not available
+      console.error("localStorage is not available");
     }
+
+    
   
+    console.log("finisheddd");
   };
 
   const backButtonClicked = () => {
