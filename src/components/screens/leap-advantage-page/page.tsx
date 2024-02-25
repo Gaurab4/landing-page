@@ -22,7 +22,6 @@ const LeapAdvantagePage = () => {
     <>
       {/* Title Section */}
       <TitleText title={'Get placed in'} />
-
       {/* Company Logos */}
       <div className='grid grid-cols-1 md:grid-cols-3 gap-4 w-9/12 mb-10 mx-auto'>
         {CompanyList.map((company, index) => (
