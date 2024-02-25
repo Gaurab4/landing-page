@@ -1,5 +1,4 @@
 "use client"
-
 import React, { useEffect, useState } from 'react';
 import Overview from './overview/page';
 import PlacementCareer from './placement-career/page';
