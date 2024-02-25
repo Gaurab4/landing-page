@@ -18,6 +18,8 @@ const CompanyList = [
 ];
 
 const LeapAdvantagePage = () => {
+  const TeachersImage = '/about/teachers.png';
+
   return (
     <>
       {/* Title Section */}
@@ -32,19 +34,30 @@ const LeapAdvantagePage = () => {
       </div>
 
       {/* Leap Advantage Section */}
-      <div className="card w-10/12 h-96 bg-gradient-to-br from-purple-100 via-pink-200 to-yellow-300 mt-10 mx-auto">
-        {/* Heading Text */}
-        <div>
-          <p className='text-black text-4xl md:text-5xl lg:text-6xl font-bold pl-6 md:pl-20 pt-10 leading-relaxed'>Why should you consider</p>
-          <p className='text-[#4936C1] text-4xl md:text-5xl lg:text-6xl font-bold pl-6 md:pl-20 leading-tight'>LeapAdvantage?</p>
+      <div className="w-full md:w-9/12 rounded-lg flex flex-col md:flex-row h-auto bg-gradient-to-br from-purple-100 via-pink-200 to-yellow-300 mt-10 ">
+        {/* Left Side */}
+        <div className='w-full md:w-1/2 bg-gradient-to-br from-purple-100 via-pink-200 to-yellow-300'>
+          {/* Heading Text */}
+          <div className='pt-10 md:pt-0 md:pl-20 '>
+            <p className='flex lg:justify-start lg:pl-0 justify-center text-black text-2xl md:text-lg lg:text-3xl font-bold pl-6 md:pl-20 pt-10 leading-relaxed'>Why should you consider</p>
+            <p className='text-[#4936C1] lg:pl-0 lg:justify-start flex justify-center text-2xl md:text-lg lg:text-3xl font-bold pl-6 md:pl-20 leading-tight'>LeapAdvantage?</p>
+          </div>
+          {/* List Items */}
+          <div className='pl-20 mt-8'>
+            <ul className='gap-y-8 text-lg grid'>
+              <li>✅ GRE and IELTS waiver* </li>
+              <li>✅ High admit chance </li>
+              <li>✅ Scholarship of up to ₹17 lakhs </li>
+              <li>✅ Education from a top-rank university </li>
+            </ul>
+          </div>
         </div>
 
-        {/* List Items */}
-        <div className=''>
-          {/* Add your list items here */}
+        {/* Right Side Image */}
+        <div className='w-full md:w-1/2 h-auto flex justify-center'>
+          <Image src={TeachersImage} alt='teachers' width={422} height={452} />
         </div>
       </div>
-    
     </>
   );
 };

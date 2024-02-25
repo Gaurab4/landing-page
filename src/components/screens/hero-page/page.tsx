@@ -14,8 +14,8 @@ const Heropage = (props: Props) => {
                     {/* First Half Data */}
                     <div className="w-[80%] lg:w-[70%] xl:w-[60%] h-[80%] flex flex-col lg:justify-start lg:text-left justify-center items-center">
                         {/* Rounded Text  */}
-                        <div className='h-[40px] w-56 lg:w-[164px] rounded-full bg-[#F5FFF7] flex justify-center items-center mb-4 lg:mb-0 lg:ml-0 lg:mr-auto'>
-                            <p className='font-[500] text-[#2b7938] text-xs'>₹17L Scholarship Assured*</p>
+                        <div className='h-[40px] w-52 lg:w-[164px] rounded-full bg-[#F5FFF7] flex justify-center items-center mb-4 lg:mb-0 lg:ml-0 lg:mr-auto'>
+                            <p className='font-[500] text-[#2b7938] p-1 text-xs'>₹17L Scholarship Assured*</p>
                         </div>
                         {/* Title Text */}
                         <div className="text-center lg:text-left mb-4">
