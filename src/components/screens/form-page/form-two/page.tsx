@@ -88,7 +88,13 @@ const SecondFormPage = (props: Props) => {
   };
 
   const onSubmitFinal = (values: any) => {
-    localStorage.setItem('form2Values', JSON.stringify(values));
+    if (typeof window !== 'undefined') {
+      localStorage.setItem('form2Values', JSON.stringify(values));
+    } else {
+      // Handle the case where localStorage is not available
+      console.error("localStorage is not available");
+    }
+  
     console.log("finisheddd");
   };
 
