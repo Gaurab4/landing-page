@@ -89,25 +89,25 @@ const AboutProgramPage = (props: Props) => {
       <>
       <div className="hidden md:flex flex-col gap-y-4 md:flex-row md:gap-x-12 md:justify-between mt-12">
           <button
-            className={`btn text-[#332EBF] ${activeTab === 'Overview' ? 'bg-[#332EBF] text-white' : ''} px-4 py-2`}
+            className={`btn text-[#332EBF] ${activeTab === 'Overview' ? 'bg-[#332EBF] text-white' : ''} px-20 py-2`}
             onClick={() => handleTabClick('Overview')}
           >
             Overview
           </button>
           <button
-            className={`btn text-[#332EBF] ${activeTab === 'Program & Eligibility' ? 'bg-[#332EBF] text-white' : ''} px-4 py-2`}
+            className={`btn text-[#332EBF] ${activeTab === 'Program & Eligibility' ? 'bg-[#332EBF] text-white' : ''} px-16 py-2`}
             onClick={() => handleTabClick('Program & Eligibility')}
           >
             Program & Eligibility
           </button>
           <button
-            className={`btn text-[#332EBF] ${activeTab === 'Placement & Career' ? 'bg-[#332EBF] text-white' : ''} px-4 py-2`}
+            className={`btn text-[#332EBF] ${activeTab === 'Placement & Career' ? 'bg-[#332EBF] text-white' : ''} px-16 py-2`}
             onClick={() => handleTabClick('Placement & Career')}
           >
             Placement & Career
           </button>
           <button
-            className={`btn text-[#332EBF] ${activeTab === 'Fees & Financing' ? 'bg-[#332EBF] text-white' : ''} px-4 py-2`}
+            className={`btn text-[#332EBF] ${activeTab === 'Fees & Financing' ? 'bg-[#332EBF] text-white' : ''} px-16 py-2`}
             onClick={() => handleTabClick('Fees & Financing')}
           >
             Fees & Financing

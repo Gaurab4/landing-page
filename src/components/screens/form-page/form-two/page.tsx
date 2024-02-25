@@ -103,12 +103,15 @@ const SecondFormPage = (props: Props) => {
         render={({ handleSubmit }) => (
           <form
             onSubmit={handleSubmit}
-            className="bg-white p-6 h-[95%] rounded-2xl"
+            className="bg-white  h-[95%] rounded-2xl"
           >
             {/* Form Title */}
-            <div className="font-bold text-xl mb-4">
+            <div className="font-bold pl-6 pt-3 text-xl ">
               Complete Student Profile
             </div>
+
+            {/* Divider  */}
+            <div className="divider"></div>
 
               {/* Slider Component for Form 2 */}
               <div className="w-[90%] rounded-lg bg-[#6b3bd0] h-1 relative mx-auto my-4">
@@ -130,12 +133,12 @@ const SecondFormPage = (props: Props) => {
             </div>
 
               {/* Personal Info Text  */}
-              <div className="pt-4 pb-8 font-normal text-lg">
+              <div className="pt-4 pl-6 pb-8 font-normal text-lg">
               <p>Let&apos;s Enter Your Personal Details</p>
             </div>
 
             {/* Address Section */}
-            <div className=" lg:flex  justify-between">
+            <div className=" pl-6  pr-6 lg:flex  justify-between">
             <div className="mb-4 ">
               <label
                 className="block text-gray-700 text-sm font-bold mb-2"
@@ -193,7 +196,7 @@ const SecondFormPage = (props: Props) => {
           
 
             {/* Country, State, City, Pincode */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+            <div className="grid pl-6 pr-6 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
               {/* Country dropdown */}
               <div className="mb-4">
                 <label
