@@ -23,7 +23,7 @@ const LeapAdvantagePage = () => {
       {/* Title Section */}
       <TitleText title={'Get placed in'} />
       {/* Company Logos */}
-      <div className='grid grid-cols-1 md:grid-cols-3 gap-4 w-9/12 mb-10 mx-auto'>
+      <div className='grid grid-cols-3 lg:grid-cols-6 gap-4 w-9/12 mb-10 mx-auto'>
         {CompanyList.map((company, index) => (
           <div key={index} className='flex justify-center items-center'>
             <Image width={80} src={company.logo} alt={company.name} className='max-h-16 md:max-h-full' />

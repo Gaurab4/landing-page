@@ -3,6 +3,7 @@ import { Field, Form } from "react-final-form";
 
 type Props = {
   setIsFirstSave: (value: boolean) => void;
+  currentStep:number;
 };
 
 // Function to fetch data from the API
@@ -53,7 +54,7 @@ async function fetchCities(countryCode: string, stateCode: string) {
 }
 
 const SecondFormPage = (props: Props) => {
-  const { setIsFirstSave } = props;
+  const { setIsFirstSave, currentStep } = props;
   const [countries, setCountries] = useState([]);
   const [states, setStates] = useState([]);
   const [cities, setCities] = useState([]);
@@ -96,21 +97,46 @@ const SecondFormPage = (props: Props) => {
   };
 
   return (
-    <div className="max-w-xl mx-auto"> {/* Responsive container */}
+    <div className="w-full  lg:w-[1300px] h-[900px] lg:h-[650px] relative"> {/* Responsive container */}
       <Form
         onSubmit={onSubmitFinal}
         render={({ handleSubmit }) => (
           <form
             onSubmit={handleSubmit}
-            className="bg-white rounded-2xl shadow-md p-6"
+            className="bg-white p-6 h-[95%] rounded-2xl"
           >
             {/* Form Title */}
             <div className="font-bold text-xl mb-4">
               Complete Student Profile
             </div>
 
+              {/* Slider Component for Form 2 */}
+              <div className="w-[90%] rounded-lg bg-[#6b3bd0] h-1 relative mx-auto my-4">
+                <div  className="absolute rounded-lg top-0 bg-[#6b3bd0] h-1 transition-all duration-300 ease-in-out"
+                style={{ width: `${(currentStep / 2) * 100}%` }}
+              ></div>
+              <div className="flex justify-between mt-2">
+              <div className="w-1/2  flex text-center items-center justify-center text-lg z-10 mt-[-11px]">
+                <div className="w-6 h-6 bg-[#f7f2ff] rounded-full z-10">
+                <div className="w-2 h-2 bg-[#6b3bd0] mt-2 ml-2 rounded-full"></div>
+                </div>
+              </div>
+                <div className="w-1/2  flex text-center items-center justify-center text-lg z-10 mt-[-11px]">
+                  <div className="w-6 h-6 bg-[#f7f2ff] rounded-full ">
+                    <div className="w-2 h-2 bg-[#6b3bd0] mt-2 ml-2 rounded-full"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+              {/* Personal Info Text  */}
+              <div className="pt-4 pb-8 font-normal text-lg">
+              <p>Let&apos;s Enter Your Personal Details</p>
+            </div>
+
             {/* Address Section */}
-            <div className="mb-4">
+            <div className=" lg:flex  justify-between">
+            <div className="mb-4 ">
               <label
                 className="block text-gray-700 text-sm font-bold mb-2"
                 htmlFor="address1"
@@ -123,7 +149,7 @@ const SecondFormPage = (props: Props) => {
                 type="text"
                 placeholder="Enter your Address "
                 required
-                className="border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                className="border rounded w-full lg:w-[560px] py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
               />
               <p className="text-red-500 text-xs italic">
                 <Field
@@ -136,6 +162,35 @@ const SecondFormPage = (props: Props) => {
                 </Field>
               </p>
             </div>
+            <div className="mb-4">
+              <label
+                className="flex text-gray-700 text-sm font-bold mb-2"
+                htmlFor="address1"
+              >
+                Address Line 2 <p className="text-xs font-[300] mt-[2px] pl-2">(optional)</p>
+              </label>
+              <Field
+                name="address2"
+                component="input"
+                type="text"
+                placeholder="Enter your Address 2"
+                
+                className="border rounded w-full lg:w-[560px] py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              />
+              <p className="text-red-500 text-xs italic">
+                <Field
+                  name="address1"
+                  subscription={{ touched: true, error: true }}
+                >
+                  {({ meta: { touched, error } }) =>
+                    touched && error ? <span>{error}</span> : null
+                  }
+                </Field>
+              </p>
+            </div>
+
+            </div>
+          
 
             {/* Country, State, City, Pincode */}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -236,9 +291,9 @@ const SecondFormPage = (props: Props) => {
             </div>
 
             {/* Buttons */}
-            <div className="flex justify-between">
+            <div className="flex justify-between ">
               {/* Back Button */}
-              <div className="">
+              <div className=" absolute bottom-16 left-10">
                 <button
                   onClick={backButtonClicked}
                   type="submit"
@@ -249,7 +304,7 @@ const SecondFormPage = (props: Props) => {
               </div>
 
               {/* Submit Button */}
-              <div className="">
+              <div className=" absolute bottom-16 right-10">
                 <button
                   type="submit"
                   className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"

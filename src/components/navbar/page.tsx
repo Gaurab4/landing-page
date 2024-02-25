@@ -28,9 +28,10 @@ const Navbar = (props: Props) => {
   return (
     <div className="navbar shadow-2xl bg-base-100">
       <div className="navbar-start">
-        <a className="btn btn-ghost text-xl text-[#4d30ff] ml-28">Leap Advantage</a>
+        <a className="btn btn-ghost text-xl text-[#4d30ff] lg:ml-28 ml-12 ">Leap Advantage</a>
       </div>
       <div className="navbar-end">
+
         {/* Dropdown for small screens */}
         <div className="dropdown block lg:hidden relative">
           <div tabIndex={0} role="button" onClick={toggleMenu} className="btn btn-ghost btn-circle">
@@ -44,11 +45,10 @@ const Navbar = (props: Props) => {
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h7" />
             </svg>
           </div>
-          
         </div>
 
         {/* For Masters - Displayed for larger screens */}
-        <a className="btn mr-28 btn-outline text-[#443eff] text-l hidden lg:block">For Masters</a>
+        <a className="btn mr-28  btn-outline text-[#443eff] text-l hidden pt-4 lg:block">For Masters</a>
       </div>
     </div>
   );

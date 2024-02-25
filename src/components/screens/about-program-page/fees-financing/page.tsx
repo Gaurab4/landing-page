@@ -4,7 +4,7 @@ type Props = {};
 
 const FeesFinancing = (props: Props) => {
   return (
-    <div className='flex flex-col lg:flex-row mt-16'>
+    <div className='flex flex-col  lg:flex-reverse lg:flex-row mt-16'>
         {/* Left Section  */}
         <div className='w-full lg:w-1/2 h-full mb-8 lg:mb-0'>
             <p className='font-semibold text-lg text-[#1B1D6A] mb-5'>With Leap Advantage, you save almost ₹17 lakhs on tuition fees.</p>
@@ -23,9 +23,9 @@ const FeesFinancing = (props: Props) => {
         </div>
 
         {/* Right Section */}
-        <div className='w-full lg:w-1/2 h-full'>
-            <div className='w-full h-56 mb-8 lg:mb-0'>
-                <div className='flex rounded-lg shadow-lg bg-[#140B4B]'>
+        <div className='w-full   lg:w-1/2  h-full '>
+            <div className='lg:w-[60%]  h-56 mb-8 lg:mb-0'>
+                <div className='flex rounded-lg  shadow-lg bg-[#140B4B]'>
                     {/* Left Side */}
                     <div className='p-5 text-white'>
                         <p className='font-semibold'>With</p>
@@ -39,7 +39,7 @@ const FeesFinancing = (props: Props) => {
                     {/* Divider  */}
                     <div className="w-px bg-gray-400"></div>
                     {/* Right Side */}
-                    <div className='p-5'>
+                    <div className='p-5 text-white'>
                         <p className='font-semibold'>Studying at</p>
                         <p className='font-semibold'>CWRU normally</p>
                         <p className='font-light text-xs' >(4 Semesters on</p>

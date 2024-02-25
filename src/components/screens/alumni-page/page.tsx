@@ -34,7 +34,7 @@ const AlumiPage = () => {
   const alumni3 = '/alumni/alumni3.png';
 
   return (
-    <div className="w-full overflow-x-hidden"> {/* Prevent horizontal overflow */}
+    <div className="w-9/12 overflow-x-hidden mb-12"> {/* Prevent horizontal overflow */}
       {/* Main Text Section */}
       <TitleText title={'Notable Alumni'} />
 
@@ -78,7 +78,7 @@ const AlumiPage = () => {
           </div>
         </SwipeableViews>
       ) : (
-        <div className="flex gap-x-10">
+        <div className="flex gap-x-10 justify-center">
           <AlumniCard
             name={'Paul Buchheit'}
             position={'Inventor of Gmail'}

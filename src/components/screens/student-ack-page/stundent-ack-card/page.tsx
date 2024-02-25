@@ -9,7 +9,7 @@ type Props = {
 const StudentAckCard = (props: Props) => {
     const {topText ,bottomTextName ,bottomText} = props
   return (
-    <div className="card w-96 bg-[#F8F8FF] shadow-xl ">
+    <div className="card w-72  lg:w-96 bg-[#F8F8FF] ">
     <div className="card-body">
       
       {/* Main Text */}
