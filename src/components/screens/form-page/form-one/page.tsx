@@ -1,6 +1,5 @@
 // components/Form.js
 "use client";
-
 import { Form, Field } from "react-final-form";
 
 interface FormValues {
@@ -46,53 +45,41 @@ const MyFormFirst = (props: Props) => {
   };
 
   return (
-    <div className="w-[1300px] h-[647px]">
+    <div className="w-full lg:w-[1300px] h-[647px]">
       {/*  Form 1 */}
-
       <Form
         onSubmit={onSubmit}
         validate={validate}
         render={({ handleSubmit }) => (
           <form
             onSubmit={handleSubmit}
-            className=" bg-[#FFFFFF]  h-[90%] rounded-2xl "
+            className="bg-white h-full rounded-2xl"
           >
             {/* Form  Title  */}
-            <div className="pl-6 pt-4 font-[700]">Complete Student Profile</div>
+            <div className="pl-6 pt-4 font-semibold">Complete Student Profile</div>
 
             {/* Divider  */}
-            <div className="divider "></div>
+            <div className="divider"></div>
 
             {/* Steps  */}
-            <ul className="steps w-[100%]">
-              <li
-                data-content="●"
-                className="step step-primary text-xs font-[500]"
-              >
+            <ul className="steps">
+              <li data-content="●" className="step text-xs font-semibold">
                 General Details
               </li>
-
-              <li
-                data-content="●"
-                className="step step-primary text-xs font-[500]"
-              >
+              <li data-content="●" className="step text-xs font-semibold">
                 Address Details
               </li>
             </ul>
 
             {/* Personal Info Text  */}
-            <div className="pl-6 pt-4 pb-8 font-[400] text-[20px]">
+            <div className="pl-6 pt-4 pb-8 font-normal text-lg">
               <p>Let&apos;s Enter Your Personal Details</p>
             </div>
 
             {/* Form Fields  */}
-
-            <div className="grid grid-cols-3 grid-flow-row gap-4 pl-6">
-              <div className="mb-4 ">
-                <label
-                  className="block text-gray-700 text-sm font-[500] mb-2"
-                  htmlFor="firstName"
-                >
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 pl-6 pr-6">
+              <div className="mb-4">
+                <label className="block text-sm font-semibold mb-2" htmlFor="firstName">
                   First Name
                 </label>
                 <Field
@@ -100,7 +87,7 @@ const MyFormFirst = (props: Props) => {
                   component="input"
                   type="text"
                   placeholder="Enter your first name"
-                  className="border rounded w-[330px] py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                  className="border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                 />
                 <p className="text-red-500 text-xs italic">
                   <Field
@@ -114,10 +101,7 @@ const MyFormFirst = (props: Props) => {
                 </p>
               </div>
               <div className="mb-4">
-                <label
-                  className="block text-gray-700 text-sm font-[500] mb-2"
-                  htmlFor="lastName"
-                >
+                <label className="block text-sm font-semibold mb-2" htmlFor="lastName">
                   Last Name
                 </label>
                 <Field
@@ -125,7 +109,7 @@ const MyFormFirst = (props: Props) => {
                   component="input"
                   type="text"
                   placeholder="Enter your last name"
-                  className=" border rounded w-[330px] py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                  className="border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                 />
                 <p className="text-red-500 text-xs italic">
                   <Field
@@ -139,10 +123,7 @@ const MyFormFirst = (props: Props) => {
                 </p>
               </div>
               <div className="mb-4">
-                <label
-                  className="block text-gray-700 text-sm font-[500] mb-2"
-                  htmlFor="email"
-                >
+                <label className="block text-sm font-semibold mb-2" htmlFor="email">
                   Email
                 </label>
                 <Field
@@ -150,7 +131,7 @@ const MyFormFirst = (props: Props) => {
                   component="input"
                   type="email"
                   placeholder="Enter your email"
-                  className=" border rounded w-[330px] py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                  className="border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                 />
                 <p className="text-red-500 text-xs italic">
                   <Field
@@ -164,10 +145,7 @@ const MyFormFirst = (props: Props) => {
                 </p>
               </div>
               <div className="mb-4">
-                <label
-                  className="block text-gray-700 text-sm font-[500] mb-2"
-                  htmlFor="dob"
-                >
+                <label className="block text-sm font-semibold mb-2" htmlFor="dob">
                   Date of Birth
                 </label>
                 <Field
@@ -175,7 +153,7 @@ const MyFormFirst = (props: Props) => {
                   component="input"
                   type="date"
                   placeholder="Select your date of birth"
-                  className=" border rounded w-[330px] py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                  className="border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                 />
                 <p className="text-red-500 text-xs italic">
                   <Field
@@ -191,10 +169,10 @@ const MyFormFirst = (props: Props) => {
             </div>
 
             {/* Submit Button  */}
-            <div className="mb-6 flex flex-row-reverse mt-[2rem] mr-6">
+            <div className="mb-6 mt-4 flex justify-center">
               <button
                 type="submit"
-                className="bg-[#443EFE] w-72 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                className="bg-[#443EFE] w-72 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
               >
                 Save & Continue
               </button>

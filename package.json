@@ -13,12 +13,14 @@
     "next": "14.1.0",
     "react": "^18",
     "react-dom": "^18",
-    "react-final-form": "^6.5.9"
+    "react-final-form": "^6.5.9",
+    "react-swipeable-views": "^0.14.0"
   },
   "devDependencies": {
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
+    "@types/react-swipeable-views": "^0.13.5",
     "autoprefixer": "^10.0.1",
     "daisyui": "^4.7.2",
     "eslint": "^8",
