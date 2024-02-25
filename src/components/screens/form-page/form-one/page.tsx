@@ -11,10 +11,11 @@ interface FormValues {
 
 type Props = {
   setIsFirstSave: (value: boolean) => void;
+  currentStep:number;
 };
 
 const MyFormFirst = (props: Props) => {
-  const { setIsFirstSave } = props;
+  const { setIsFirstSave ,currentStep } = props;
 
   const onSubmit = () => {
     setIsFirstSave(true);
@@ -45,7 +46,7 @@ const MyFormFirst = (props: Props) => {
   };
 
   return (
-    <div className="w-full lg:w-[1300px] h-[647px]">
+    <div className="w-full lg:w-[1300px] h-[647px] relative">
       {/*  Form 1 */}
       <Form
         onSubmit={onSubmit}
@@ -53,7 +54,7 @@ const MyFormFirst = (props: Props) => {
         render={({ handleSubmit }) => (
           <form
             onSubmit={handleSubmit}
-            className="bg-white h-full rounded-2xl"
+            className="bg-white h-[95%] rounded-2xl"
           >
             {/* Form  Title  */}
             <div className="pl-6 pt-4 font-semibold">Complete Student Profile</div>
@@ -61,15 +62,26 @@ const MyFormFirst = (props: Props) => {
             {/* Divider  */}
             <div className="divider"></div>
 
-            {/* Steps  */}
-            <ul className="steps">
-              <li data-content="●" className="step text-xs font-semibold">
-                General Details
-              </li>
-              <li data-content="●" className="step text-xs font-semibold">
-                Address Details
-              </li>
-            </ul>
+              {/* Slider Component for Form 1 */}
+              <div className="w-[90%] rounded-lg bg-gray-200 h-1  relative mx-auto my-4">
+              <div
+                className="absolute rounded-lg top-0 bg-[#6b3bd0] h-1 transition-all duration-300 ease-in-out"
+                style={{ width: `${(currentStep / 2) * 100}%` }}
+              ></div>
+              <div className="flex justify-between mt-2">
+              <div className="w-1/2  flex text-center items-center justify-center text-lg z-10 mt-[-11px]">
+                <div className="w-6 h-6 bg-[#f7f2ff] rounded-full z-10">
+                <div className="w-2 h-2 bg-[#6b3bd0] mt-2 ml-2 rounded-full"></div>
+                </div>
+              </div>
+                <div className="w-1/2  flex text-center items-center justify-center text-lg z-10 mt-[-11px]">
+                  <div className="w-6 h-6 bg-gray-300 rounded-full ">
+                  <div className="w-2 h-2 bg-[white] mt-2 ml-2 rounded-full"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
 
             {/* Personal Info Text  */}
             <div className="pl-6 pt-4 pb-8 font-normal text-lg">
@@ -168,11 +180,11 @@ const MyFormFirst = (props: Props) => {
               </div>
             </div>
 
-            {/* Submit Button  */}
-            <div className="mb-6 mt-4 flex justify-center">
+           {/* Submit Button  */}
+           <div className="mb-2 mt-4 pr-8 absolute bottom-10 right-0">
               <button
                 type="submit"
-                className="bg-[#443EFE] w-72 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                className="bg-[#443EFE] text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
               >
                 Save & Continue
               </button>

@@ -11,7 +11,7 @@ const Overview = (props: Props) => {
         {/* First Half  */}
         <div className='w-full lg:w-1/2 mb-8 lg:mb-0'>
         <div className='w-full lg:w-[90%]'>
-            <p className='mb-8 font-[300]'>
+            <p className='mb-8 lg:mt-[0] mt-[12px] font-[300]'>
             The Case Western Reserve University is located in Cleveland,
             Ohio, US. The Masters in Computer Science from Case Western Reserve
             University provides students with experiential and applied learning
@@ -29,8 +29,11 @@ const Overview = (props: Props) => {
         </div>
         {/* Image Half */}
         <div className='w-full lg:w-1/2'>
-            <div className='flex justify-center'>
+            <div className='flex justify-center relative'>
                 <Image style={{borderRadius:16}} width={398} height={398} src={overViewImage} alt='overview Image'/>
+                <div className="absolute bottom-0 left-0 right-0 p-4 bg-white bg-opacity-90  h-32 rounded-lg text-white">
+
+                </div>
             </div>  
         </div>
         

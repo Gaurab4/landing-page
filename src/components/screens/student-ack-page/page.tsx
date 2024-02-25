@@ -30,7 +30,7 @@ const StudentAckPage = () => {
   };
 
   return (
-    <div className="w-full overflow-x-hidden"> {/* Prevent horizontal overflow */}
+    <div className="w-9/12 text-[12px]  lg:text-[16px] overflow-x-hidden"> {/* Prevent horizontal overflow */}
       {/* Title Section */}
       <TitleText title={'What are students are saying'} />
 
@@ -40,7 +40,7 @@ const StudentAckPage = () => {
           index={activeStep}
           onChangeIndex={handleStepChange}
           enableMouseEvents
-          className="overflow-hidden"
+          className="overflow-hidden "
         >
           <div className="flex justify-center">
             <StudentAckCard
@@ -71,7 +71,7 @@ const StudentAckPage = () => {
           </div>
         </SwipeableViews>
       ) : (
-        <div className="flex justify-between">
+        <div className="flex gap-x-10 justify-between">
           <StudentAckCard
             topText={
               'I valued working with professors on interesting projects for my final project requirement. Being given the opportunity to build them from scratch and have them serve useful purposes made the work fulfilling while also emulating real-world software development. '
