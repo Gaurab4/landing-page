@@ -11,7 +11,7 @@
   "dependencies": {
     "final-form": "^4.20.10",
     "next": "14.1.0",
-    "react": "^18",
+    "react": "^15.3.0 || ^16.0.0 || ^17.0.0 || ^18",
     "react-dom": "^18",
     "react-final-form": "^6.5.9",
     "react-swipeable-views": "^0.14.0"
