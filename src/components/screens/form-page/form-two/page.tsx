@@ -96,63 +96,38 @@ const SecondFormPage = (props: Props) => {
   };
 
   return (
-    <div className="w-[1300px] h-[647px]"> 
-    <Form
-      onSubmit={onSubmitFinal}
-      render={({ handleSubmit }) => (
-        <form
-          onSubmit={handleSubmit}
-          className="bg-[#FFFFFF]  h-[90%] rounded-2xl"
-        >
-          {/* Form  Title  */}
-          <div className="pl-6 pt-4 font-[700]">Complete Student Profile</div>
+    <div className="max-w-xl mx-auto"> {/* Responsive container */}
+      <Form
+        onSubmit={onSubmitFinal}
+        render={({ handleSubmit }) => (
+          <form
+            onSubmit={handleSubmit}
+            className="bg-white rounded-2xl shadow-md p-6"
+          >
+            {/* Form Title */}
+            <div className="font-bold text-xl mb-4">
+              Complete Student Profile
+            </div>
 
-          {/* Divider  */}
-          <div className="divider "></div>
-
-          {/* Steps  */}
-          <ul className="steps w-[100%]">
-            <li
-              data-content="●"
-              className="step step-primary text-xs font-[500]"
-            >
-              General Details
-            </li>
-
-            <li
-              data-content="●"
-              className="step step-primary text-xs font-[500]"
-            >
-              Address Details
-            </li>
-          </ul>
-
-          {/* Personal Info Text  */}
-          <div className="pl-6 pt-4 pb-8 font-[400] text-[20px]">
-            <p>Enter your current mailing address</p>
-          </div>
-
-          {/* Address Section */}
-
-          <div className="pl-6 flex">
+            {/* Address Section */}
             <div className="mb-4">
               <label
-                className="block text-gray-700 text-sm font-[500] mb-2"
-                htmlFor="Address"
+                className="block text-gray-700 text-sm font-bold mb-2"
+                htmlFor="address1"
               >
                 Address Line 1*
               </label>
               <Field
-                name="Address"
+                name="address1"
                 component="input"
                 type="text"
                 placeholder="Enter your Address "
                 required
-                className=" border rounded w-[554px] py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                className="border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
               />
               <p className="text-red-500 text-xs italic">
                 <Field
-                  name="Adresss"
+                  name="address1"
                   subscription={{ touched: true, error: true }}
                 >
                   {({ meta: { touched, error } }) =>
@@ -162,158 +137,130 @@ const SecondFormPage = (props: Props) => {
               </p>
             </div>
 
-            <div className="mb-4 ml-5">
-              <label
-                className="flex  text-gray-700 text-sm font-[500] mb-2"
-                htmlFor="Address 2"
-              >
-                Address Line 2{" "}
-                <p className="text-[grey] ml-2 mt-[1.5px] font-[300] text-xs">
-                  (optional)
+            {/* Country, State, City, Pincode */}
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+              {/* Country dropdown */}
+              <div className="mb-4">
+                <label
+                  className="block text-gray-700 text-sm font-bold mb-2"
+                  htmlFor="country"
+                >
+                  Country
+                </label>
+                <Field
+                  name="country"
+                  component="select"
+                  className="border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                  onChange={handleCountryChange}
+                >
+                  <option value="">Select Country</option>
+                  {countries.map((country: any) => (
+                    <option key={country.iso2} value={country.iso2}>
+                      {country.name}
+                    </option>
+                  ))}
+                </Field>
+              </div>
+
+              {/* State dropdown */}
+              <div className="mb-4">
+                <label
+                  className="block text-gray-700 text-sm font-bold mb-2"
+                  htmlFor="state"
+                >
+                  State
+                </label>
+                <Field
+                  name="state"
+                  component="select"
+                  className="border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                  onChange={handleStateChange}
+                >
+                  <option value="">Select State</option>
+                  {states.map((state: any) => (
+                    <option key={state.isoCode} value={state.isoCode}>
+                      {state.name}
+                    </option>
+                  ))}
+                </Field>
+              </div>
+
+              {/* City dropdown */}
+              <div className="mb-4">
+                <label
+                  className="block text-gray-700 text-sm font-bold mb-2"
+                  htmlFor="city"
+                >
+                  City
+                </label>
+                <Field
+                  name="city"
+                  component="select"
+                  className="border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                >
+                  <option value="">Select City</option>
+                  {cities.map((city: any) => (
+                    <option key={city.name} value={city.name}>
+                      {city.name}
+                    </option>
+                  ))}
+                </Field>
+              </div>
+
+              {/* Pincode input */}
+              <div className="mb-4">
+                <label
+                  className="block text-gray-700 text-sm font-bold mb-2"
+                  htmlFor="pincode"
+                >
+                  Pincode
+                </label>
+                <Field
+                  name="pincode"
+                  component="input"
+                  type="text"
+                  placeholder="Enter Pincode "
+                  className="border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                />
+                <p className="text-red-500 text-xs italic">
+                  <Field
+                    name="pincode"
+                    subscription={{ touched: true, error: true }}
+                  >
+                    {({ meta: { touched, error } }) =>
+                      touched && error ? <span>{error}</span> : null
+                    }
+                  </Field>
                 </p>
-              </label>
-              <Field
-                name="Address 2"
-                component="input"
-                type="text"
-                placeholder="Enter your Address 2 "
-                className=" border rounded w-[554px] py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-              />
-              <p className="text-red-500 text-xs italic">
-                <Field
-                  name="Adresss"
-                  subscription={{ touched: true, error: true }}
+              </div>
+            </div>
+
+            {/* Buttons */}
+            <div className="flex justify-between">
+              {/* Back Button */}
+              <div className="">
+                <button
+                  onClick={backButtonClicked}
+                  type="submit"
+                  className="btn btn-outline"
                 >
-                  {({ meta: { touched, error } }) =>
-                    touched && error ? <span>{error}</span> : null
-                  }
-                </Field>
-              </p>
-            </div>
-          </div>
+                  Back
+                </button>
+              </div>
 
-          {/* Country , State , City, Pincode */}
-          <div className="grid grid-cols-3 grid-flow-row gap-4 pl-6">
-            {/* Country dropdown */}
-            <div className="mb-4">
-              <label
-                className="block text-gray-700 text-sm font-bold mb-2"
-                htmlFor="country"
-              >
-                Country
-              </label>
-              <Field
-                name="country"
-                component="select"
-                className=" border rounded w-[330px] py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                onChange={handleCountryChange}
-              >
-                <option value="">Select Country</option>
-                {countries.map((country: any) => (
-                  <option key={country.iso2} value={country.iso2}>
-                    {country.name}
-                  </option>
-                ))}
-              </Field>
-            </div>
-            {/* State dropdown */}
-            <div className="mb-4">
-              <label
-                className="block text-gray-700 text-sm font-bold mb-2"
-                htmlFor="state"
-              >
-                State
-              </label>
-              <Field
-                name="state"
-                component="select"
-                className="border rounded w-[330px] py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                onChange={handleStateChange}
-              >
-                <option value="">Select State</option>
-                {states.map((state: any) => (
-                  <option key={state.isoCode} value={state.isoCode}>
-                    {state.name}
-                  </option>
-                ))}
-              </Field>
-            </div>
-            {/* City dropdown */}
-            <div className="mb-4">
-              <label
-                className="block text-gray-700 text-sm font-bold mb-2"
-                htmlFor="city"
-              >
-                City
-              </label>
-              <Field
-                name="city"
-                component="select"
-                className=" border rounded w-[330px] py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-              >
-                <option value="">Select City</option>
-                {cities.map((city: any) => (
-                  <option key={city.name} value={city.name}>
-                    {city.name}
-                  </option>
-                ))}
-              </Field>
-            </div>
-
-            {/* PinCode dropdown */}
-            <div className="mb-4">
-              <label
-                className="block text-gray-700 text-sm font-[500] mb-2"
-                htmlFor="Pincode"
-              >
-                Pincode
-              </label>
-              <Field
-                name="Pincode"
-                component="input"
-                type="text"
-                placeholder="Enter Pincode "
-                className=" border rounded w-[330px] py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-              />
-              <p className="text-red-500 text-xs italic">
-                <Field
-                  name="Pincode"
-                  subscription={{ touched: true, error: true }}
+              {/* Submit Button */}
+              <div className="">
+                <button
+                  type="submit"
+                  className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
                 >
-                  {({ meta: { touched, error } }) =>
-                    touched && error ? <span>{error}</span> : null
-                  }
-                </Field>
-              </p>
+                  Submit
+                </button>
+              </div>
             </div>
-          </div>
-
-          {/* Buttons  */}
-          <div className="flex justify-between ">
-            {/* Back Button  */}
-            <div className=" ml-6">
-              <button
-                onClick={backButtonClicked}
-                type="submit"
-                className="btn btn-outline"
-              >
-                Back
-              </button>
-            </div>
-
-            {/* Submit Button  */}
-            <div className="mr-6">
-              <button
-                type="submit"
-                className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-              >
-                Submit
-              </button>
-            </div>
-          </div>
-        </form>
-      )}
-    />
+          </form>
+        )}
+      />
     </div>
   );
 };

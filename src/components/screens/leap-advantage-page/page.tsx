@@ -1,50 +1,53 @@
-import React from 'react'
-import TitleText from '../../title-text-common/page'
-
+import React from 'react';
+import TitleText from '../../title-text-common/page';
+import googleLogo from '../../../../public/about/overview.png'; // Import company logos
+import mastercardLogo from '../../../../public/about/overview.png';
+import appleLogo from '../../../../public/about/overview.png';
+import uberLogo from '../../../../public/about/overview.png';
+import teslaLogo from '../../../../public/about/overview.png';
+import amazonLogo from '../../../../public/about/overview.png';
+import Image from 'next/image';
 
 const CompanyList = [
-  'google',
-  'mastercard',
-  'apple',
-  'uber',
-  'tesla',
-  'amazon',
+  { name: 'Google', logo: googleLogo },
+  { name: 'Mastercard', logo: mastercardLogo },
+  { name: 'Apple', logo: appleLogo },
+  { name: 'Uber', logo: uberLogo },
+  { name: 'Tesla', logo: teslaLogo },
+  { name: 'Amazon', logo: amazonLogo },
 ];
 
-type Props = {}
-
-const LeapAdvantagePage = (props: Props) => {
+const LeapAdvantagePage = () => {
   return (
     <>
-    {/* Title Section */}
-    <TitleText title={'Get placed in'}/>
+      {/* Title Section */}
+      <TitleText title={'Get placed in'} />
 
-    {/* Map of CompanyList */}
-    <div className='flex justify-between w-9/12 mb-10'>
-      {CompanyList.map((companyName, index) => (
-          <div key={index}>{companyName}</div>
-      ))}
-    </div>
+      {/* Company Logos */}
+      <div className='grid grid-cols-1 md:grid-cols-3 gap-4 w-9/12 mb-10 mx-auto'>
+        {CompanyList.map((company, index) => (
+          <div key={index} className='flex justify-center items-center'>
+            <Image width={80} src={company.logo} alt={company.name} className='max-h-16 md:max-h-full' />
+          </div>
+        ))}
+      </div>
 
-
-    {/* Leap Advantage Section  */}
-
-    <div className="card w-10/12 h-96 bg-gradient-to-br from-purple-100 via-pink-200 to-yellow-300 mt-10 ">
-
-      {/* Heading Text  */}
+      {/* Leap Advantage Section */}
+      <div className="card w-10/12 h-96 bg-gradient-to-br from-purple-100 via-pink-200 to-yellow-300 mt-10 mx-auto">
+        {/* Heading Text */}
         <div>
-          <p className='text-black text-4xl font-bold pl-20 pt-10 leading-relaxed'>Why should you consider</p>
-          <p className='text-[#4936C1] text-4xl font-bold pl-20 leading-tight'>LeapAdvantage?</p>
+          <p className='text-black text-4xl md:text-5xl lg:text-6xl font-bold pl-6 md:pl-20 pt-10 leading-relaxed'>Why should you consider</p>
+          <p className='text-[#4936C1] text-4xl md:text-5xl lg:text-6xl font-bold pl-6 md:pl-20 leading-tight'>LeapAdvantage?</p>
         </div>
 
-      {/* List Items */}
-      <div className=''>
-        
+        {/* List Items */}
+        <div className=''>
+          {/* Add your list items here */}
+        </div>
       </div>
-    </div>
-    </>
     
-  )
-}
+    </>
+  );
+};
 
-export default LeapAdvantagePage
+export default LeapAdvantagePage;
