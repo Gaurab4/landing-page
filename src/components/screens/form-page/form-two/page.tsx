@@ -87,8 +87,8 @@ const SecondFormPage = (props: Props) => {
     setCities(citiesData || []);
   };
 
-  const onSubmitFinal = () => {
-    // setIsFirstSave(true);
+  const onSubmitFinal = (values: any) => {
+    localStorage.setItem('form2Values', JSON.stringify(values));
     console.log("finisheddd");
   };
 

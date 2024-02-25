@@ -1,5 +1,5 @@
-// components/Form.js
-"use client";
+"use client "
+import React, { useEffect } from "react";
 import { Form, Field } from "react-final-form";
 
 interface FormValues {
@@ -11,17 +11,25 @@ interface FormValues {
 
 type Props = {
   setIsFirstSave: (value: boolean) => void;
-  currentStep:number;
+  currentStep: number;
 };
 
 const MyFormFirst = (props: Props) => {
-  const { setIsFirstSave ,currentStep } = props;
+  const { setIsFirstSave, currentStep } = props;
 
-  const onSubmit = () => {
+  const getFormDataFromLocalStorage = (): FormValues => {
+    const formData = localStorage.getItem("formValues");
+    return formData ? JSON.parse(formData) : {};
+  };
+
+  const initialValues: FormValues = getFormDataFromLocalStorage();
+
+  const onSubmit = (values: FormValues) => {
+    localStorage.setItem("formValues", JSON.stringify(values));
     setIsFirstSave(true);
   };
 
-  const validate = (values: any) => {
+  const validate = (values: FormValues) => {
     const errors: Partial<FormValues> = {};
 
     if (!values.firstName) {
@@ -47,49 +55,43 @@ const MyFormFirst = (props: Props) => {
 
   return (
     <div className="w-full lg:w-[1300px] h-[647px] relative">
-      {/*  Form 1 */}
       <Form
+        initialValues={initialValues}
         onSubmit={onSubmit}
         validate={validate}
         render={({ handleSubmit }) => (
-          <form
-            onSubmit={handleSubmit}
-            className="bg-white h-[95%] rounded-2xl"
-          >
-            {/* Form  Title  */}
+          <form onSubmit={handleSubmit} className="bg-white h-[95%] rounded-2xl">
+            {/* Form Title */}
             <div className="pl-6 pt-4 font-semibold">Complete Student Profile</div>
 
-            {/* Divider  */}
-            <div className="divider"></div>
-
-              {/* Slider Component for Form 1 */}
-              <div className="w-[90%] rounded-lg bg-gray-200 h-1  relative mx-auto my-4">
+            {/* Stepper */}
+            <div className="w-[90%] rounded-lg bg-gray-200 h-1  relative mx-auto my-4">
               <div
                 className="absolute rounded-lg top-0 bg-[#6b3bd0] h-1 transition-all duration-300 ease-in-out"
                 style={{ width: `${(currentStep / 2) * 100}%` }}
               ></div>
               <div className="flex justify-between mt-2">
-              <div className="w-1/2  flex text-center items-center justify-center text-lg z-10 mt-[-11px]">
-                <div className="w-6 h-6 bg-[#f7f2ff] rounded-full z-10">
-                <div className="w-2 h-2 bg-[#6b3bd0] mt-2 ml-2 rounded-full"></div>
+                <div className="w-1/2  flex text-center items-center justify-center text-lg z-10 mt-[-11px]">
+                  <div className="w-6 h-6 bg-[#f7f2ff] rounded-full z-10">
+                    <div className="w-2 h-2 bg-[#6b3bd0] mt-2 ml-2 rounded-full"></div>
+                  </div>
                 </div>
-              </div>
                 <div className="w-1/2  flex text-center items-center justify-center text-lg z-10 mt-[-11px]">
                   <div className="w-6 h-6 bg-gray-300 rounded-full ">
-                  <div className="w-2 h-2 bg-[white] mt-2 ml-2 rounded-full"></div>
+                    <div className="w-2 h-2 bg-[white] mt-2 ml-2 rounded-full"></div>
                   </div>
                 </div>
               </div>
             </div>
 
-
-            {/* Personal Info Text  */}
+            {/* Personal Info Text */}
             <div className="pl-6 pt-4 pb-8 font-normal text-lg">
               <p>Let&apos;s Enter Your Personal Details</p>
             </div>
 
-            {/* Form Fields  */}
+            {/* Form Fields */}
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4 pl-6 pr-6">
+              {/* First Name */}
               <div className="mb-4">
                 <label className="block text-sm font-semibold mb-2" htmlFor="firstName">
                   First Name
@@ -112,6 +114,8 @@ const MyFormFirst = (props: Props) => {
                   </Field>
                 </p>
               </div>
+
+              {/* Last Name */}
               <div className="mb-4">
                 <label className="block text-sm font-semibold mb-2" htmlFor="lastName">
                   Last Name
@@ -134,6 +138,8 @@ const MyFormFirst = (props: Props) => {
                   </Field>
                 </p>
               </div>
+
+              {/* Email */}
               <div className="mb-4">
                 <label className="block text-sm font-semibold mb-2" htmlFor="email">
                   Email
@@ -156,6 +162,8 @@ const MyFormFirst = (props: Props) => {
                   </Field>
                 </p>
               </div>
+
+              {/* Date of Birth */}
               <div className="mb-4">
                 <label className="block text-sm font-semibold mb-2" htmlFor="dob">
                   Date of Birth
@@ -180,8 +188,8 @@ const MyFormFirst = (props: Props) => {
               </div>
             </div>
 
-           {/* Submit Button  */}
-           <div className="mb-2 mt-4 pr-8 absolute bottom-10 right-0">
+            {/* Submit Button */}
+            <div className="mb-2 mt-4 pr-8 absolute bottom-10 right-0">
               <button
                 type="submit"
                 className="bg-[#443EFE] text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
