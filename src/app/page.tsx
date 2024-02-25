@@ -1,3 +1,4 @@
+import InbetweenSection from "@/components/inbetween-com/page";
 import Navbar from "@/components/navbar/page";
 import AboutProgramPage from "@/components/screens/about-program-page/page";
 import AlumiPage from "@/components/screens/alumni-page/page";
@@ -11,6 +12,7 @@ export default function Home() {
     <main className="flex min-h-screen flex-col items-center justify-between ">
         <Navbar/>
         <Heropage/>
+        <InbetweenSection/>
         <AboutProgramPage/>
         <Formpage/>
         <LeapAdvantagePage/>
