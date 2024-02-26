@@ -1,6 +1,6 @@
 # Landing Page Project
 
-Welcome to our Landing Page project! This project showcases a modern and responsive landing page built with Next.js, Tailwind CSS, Daisy UI, React Final Form, and React Swipeable Views.
+Welcome to my Landing Page project! This project showcases a modern and responsive landing page built with Next.js, Tailwind CSS, Daisy UI, React Final Form, and React Swipeable Views.
 
 ## Technologies Used
 
