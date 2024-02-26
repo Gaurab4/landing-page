@@ -60,6 +60,15 @@ const MyFormFirst = (props: Props) => {
 
     if (!values.dob) {
       errors.dob = "Date of birth is required";
+    } else {
+      const selectedDate = new Date(values.dob);
+      const minDate = new Date();
+      minDate.setFullYear(minDate.getFullYear() - 30); // 30 years ago
+      const maxDate = new Date();
+      maxDate.setFullYear(maxDate.getFullYear() - 10); // 10 years ago
+      if (selectedDate < minDate || selectedDate > maxDate) {
+        errors.dob = "Date of birth must be between 10 to 30 years ago";
+      }
     }
 
     return errors;
@@ -84,8 +93,8 @@ const MyFormFirst = (props: Props) => {
               ></div>
               <div className="flex justify-between mt-2">
                 <div className="w-1/2  flex text-center items-center justify-center text-lg z-10 mt-[-11px]">
-                  <div className="w-6 h-6 bg-[#f7f2ff] rounded-full z-10">
-                    <div className="w-2 h-2 bg-[#6b3bd0] mt-2 ml-2 rounded-full"></div>
+                  <div className="w-7 h-7 bg-[#f7f2ff] rounded-full  z-10">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="#6b3bd0" className="w-7 h-7 "><path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.857-9.809a.75.75 0 00-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5z" clipRule="evenodd" /></svg>   
                   </div>
                 </div>
                 <div className="w-1/2  flex text-center items-center justify-center text-lg z-10 mt-[-11px]">

@@ -31,8 +31,20 @@ const Overview = (props: Props) => {
         <div className='w-full lg:w-1/2'>
             <div className='flex justify-center relative'>
                 <Image style={{borderRadius:16}} width={398} height={398} src={overViewImage} alt='overview Image'/>
-                <div className="absolute bottom-0 left-0 right-0 p-4 bg-white bg-opacity-90  h-32 rounded-lg text-white">
+                <div className="absolute  bottom-0 left-0 right-0  bg-white bg-opacity-90  h-32 rounded-lg text-white">
+                <div className=' absolute flex  ml-10 md:ml-52 lg:ml-36 mt-6 gap-x-24 justify-between'>
+                <div className='flex flex-col items-center'>
+                    <p className='font-bold text-[#6b3bd0] text-[36px]'>#1</p>
+                    <p className='font-[500] text-gray-500  text-xs grid justify-center'>Private University <br/> in  Ohio</p>
+                </div>
 
+                {/* Third Column */}
+                <div className='flex flex-col items-center'>
+                    <p className='font-bold text-[#6b3bd0] text-[36px]'>42nd</p>
+                    <p className='font-[500] text-gray-500 text-xs '>Best Engineering <br/> school in USA</p>
+                </div>
+                </div>
+            
                 </div>
             </div>  
         </div>
