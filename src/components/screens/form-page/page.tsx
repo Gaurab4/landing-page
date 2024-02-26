@@ -4,6 +4,8 @@ import React, { useState } from "react";
 import MyFormFirst from "./form-one/page";
 import TitleText from "@/components/title-text-common/page";
 import SecondFormPage from "./form-two/page";
+import ConfirmationFormPage from "./form-three/page";
+import ThankyouPage from "./form-four/page";
 
 const FormPage = () => {
   const [currentStep, setCurrentStep] = useState(1); // State to track current step
@@ -26,21 +28,29 @@ const FormPage = () => {
         {/* Render Form Component */}
         {currentStep === 1 && (
           <MyFormFirst
-            setIsFirstSave={() => {
-              handleNextStep();
-
-            }}
+            handleNextStep={handleNextStep}
             currentStep={currentStep}
           />
         )}
         {currentStep === 2 && (
           <SecondFormPage
-            setIsFirstSave={() => {
-              handlePrevStep();
-            }}
+            handlePrevStep={handlePrevStep}
+            handleNextStep={handleNextStep}
             currentStep={currentStep}
           />
         )}
+        {
+          currentStep === 3 && (
+            <ConfirmationFormPage 
+            handlePrevStep={handlePrevStep}
+            handleNextStep={handleNextStep}
+            currentStep={currentStep}
+            />  
+          )}
+            {
+          currentStep === 4 && (
+            <ThankyouPage />  
+          )}
       </div>
     </div>
   );
