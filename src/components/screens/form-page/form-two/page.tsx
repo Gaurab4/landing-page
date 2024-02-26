@@ -2,9 +2,18 @@ import React, { useEffect, useState } from "react";
 import { Field, Form } from "react-final-form";
 
 type Props = {
-  setIsFirstSave: (value: boolean) => void;
+  handleNextStep: () => void;
+  handlePrevStep: () => void;
   currentStep:number;
 };
+
+interface form2Values {
+  address1?:string;
+  pincode?:string;
+  country?:string;
+  state?:string;
+  city?:string;
+}
 
 // Function to fetch data from the API
 async function fetchData(url: string, headers: Record<string, string>) {
@@ -54,7 +63,7 @@ async function fetchCities(countryCode: string, stateCode: string) {
 }
 
 const SecondFormPage = (props: Props) => {
-  const { setIsFirstSave, currentStep } = props;
+  const {   handleNextStep ,handlePrevStep, currentStep } = props;
   const [countries, setCountries] = useState([]);
   const [states, setStates] = useState([]);
   const [cities, setCities] = useState([]);
@@ -87,26 +96,38 @@ const SecondFormPage = (props: Props) => {
     setCities(citiesData || []);
   };
 
-  const onSubmitFinal = (values: any) => {
+  const onSubmitFinal = (values: form2Values) => {
     if (typeof window !== 'undefined') {
       localStorage.setItem('form2Values', JSON.stringify(values));
+      handleNextStep();
     } else {
       // Handle the case where localStorage is not available
       console.error("localStorage is not available");
     }
 
-    
-  
-    console.log("finisheddd");
   };
 
+  const getFormDataFromLocalStorage = (): form2Values => {
+    let formData;
+    if (typeof window !== 'undefined') {
+    formData = localStorage.getItem("form2Values");
+    }else {
+      // Handle the case where localStorage is not available
+      console.error("localStorage is not available");
+    }
+    return formData ? JSON.parse(formData) : {};
+  };
+
+  const initialValues: form2Values = getFormDataFromLocalStorage();
+
   const backButtonClicked = () => {
-    setIsFirstSave(false);
+    handlePrevStep();
   };
 
   return (
     <div className="w-full  lg:w-[1300px] h-[900px] lg:h-[650px] relative"> {/* Responsive container */}
       <Form
+        initialValues={initialValues}
         onSubmit={onSubmitFinal}
         render={({ handleSubmit }) => (
           <form
@@ -320,7 +341,7 @@ const SecondFormPage = (props: Props) => {
                   type="submit"
                   className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
                 >
-                  Submit
+                  Finish
                 </button>
               </div>
             </div>

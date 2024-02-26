@@ -10,12 +10,12 @@ interface FormValues {
 }
 
 type Props = {
-  setIsFirstSave: (value: boolean) => void;
+  handleNextStep: () => void;
   currentStep: number;
 };
 
 const MyFormFirst = (props: Props) => {
-  const { setIsFirstSave, currentStep } = props;
+  const { handleNextStep, currentStep } = props;
 
   const getFormDataFromLocalStorage = (): FormValues => {
     let formData;
@@ -33,7 +33,7 @@ const MyFormFirst = (props: Props) => {
   const onSubmit = (values: FormValues) => {
     if (typeof window !== 'undefined') {
       localStorage.setItem('formValues', JSON.stringify(values));
-      setIsFirstSave(true);
+      handleNextStep();
     } else {
       // Handle the case where localStorage is not available
       console.error("localStorage is not available");
