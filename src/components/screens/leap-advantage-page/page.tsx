@@ -1,11 +1,11 @@
 import React from 'react';
 import TitleText from '../../title-text-common/page';
-import googleLogo from '../../../../public/about/overview.png'; // Import company logos
-import mastercardLogo from '../../../../public/about/overview.png';
-import appleLogo from '../../../../public/about/overview.png';
-import uberLogo from '../../../../public/about/overview.png';
-import teslaLogo from '../../../../public/about/overview.png';
-import amazonLogo from '../../../../public/about/overview.png';
+import googleLogo from '../../../../public/companyIcon/google.png'; // Import company logos
+import mastercardLogo from '../../../../public/companyIcon/mastercard.png';
+import appleLogo from '../../../../public/companyIcon/apple.png';
+import uberLogo from '../../../../public/companyIcon/uber.png';
+import teslaLogo from '../../../../public/companyIcon/tesla.png';
+import amazonLogo from '../../../../public/companyIcon/amazon.png';
 import Image from 'next/image';
 
 const CompanyList = [
@@ -36,7 +36,7 @@ const LeapAdvantagePage = () => {
       {/* Leap Advantage Section */}
       <div className="w-full md:w-9/12 rounded-lg flex flex-col md:flex-row h-auto bg-gradient-to-br from-purple-100 via-pink-200 to-yellow-300 mt-10 ">
         {/* Left Side */}
-        <div className='w-full md:w-1/2 bg-gradient-to-br from-purple-100 via-pink-200 to-yellow-300'>
+        <div className='w-full rounded-lg  md:w-1/2 bg-gradient-to-br from-purple-100 via-pink-200 to-yellow-300'>
           {/* Heading Text */}
           <div className='pt-10 md:pt-0 md:pl-20 '>
             <p className='flex lg:justify-start lg:pl-0 justify-center text-black text-2xl md:text-lg lg:text-3xl font-bold pl-6 md:pl-20 pt-10 leading-relaxed'>Why should you consider</p>

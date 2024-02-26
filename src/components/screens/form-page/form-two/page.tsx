@@ -7,12 +7,18 @@ type Props = {
   currentStep:number;
 };
 
+interface Country {
+  value: string; 
+
+}
+
 interface form2Values {
   address1?:string;
   pincode?:string;
   country?:string;
   state?:string;
-  city?:string;
+  city?:string; 
+  selectedCountry?:string
 }
 
 // Function to fetch data from the API
@@ -33,13 +39,29 @@ async function fetchData(url: string, headers: Record<string, string>) {
 }
 
 // Fetch countries data
-async function fetchCountries() {
-  const url = "https://api.countrystatecity.in/v1/countries";
-  const headers = {
-    "X-CSCAPI-KEY": "fbd",
+
+async function fetchCountries(limit: number) {
+  const url = `https://referential.p.rapidapi.com/v1/country?fields=currency%2Ccurrency_num_code%2Ccurrency_code%2Ccontinent_code%2Ccurrency%2Ciso_a3%2Cdial_code&limit=${limit}`;
+  const options = {
+    method: 'GET',
+    headers: {
+      'X-RapidAPI-Key': 'dbaebd1947msh4d95bece4773188p112fefjsn63a254c7b297',
+      'X-RapidAPI-Host': 'referential.p.rapidapi.com'
+    }
   };
-  const countries = await fetchData(url, headers);
-  return countries;
+  
+  try {
+    const response = await fetch(url, options);
+    if (!response.ok) {
+      throw new Error('Failed to fetch countries');
+    }
+    const countriesData: Country[] = await response.json();
+    const countryNames = countriesData.map(country => country.value);
+    return countryNames;
+  } catch (error) {
+    console.error(error);
+    return [];
+  }
 }
 
 // Fetch states data for a specific country by country code
@@ -63,15 +85,16 @@ async function fetchCities(countryCode: string, stateCode: string) {
 }
 
 const SecondFormPage = (props: Props) => {
-  const {   handleNextStep ,handlePrevStep, currentStep } = props;
-  const [countries, setCountries] = useState([]);
+  const { handleNextStep ,handlePrevStep, currentStep } = props;
+  const [countries, setCountries] = useState<string[]>([]);
+  const [selectedCountry , setSelectedCountry] = useState<string>();
   const [states, setStates] = useState([]);
   const [cities, setCities] = useState([]);
-
+  console.log(countries)
   // Fetch countries data on component mount
   useEffect(() => {
     const getCountries = async () => {
-      const countriesData = await fetchCountries();
+      const countriesData = await fetchCountries(10); // Fetch only 10 countries
       setCountries(countriesData || []);
     };
     getCountries();
@@ -81,9 +104,11 @@ const SecondFormPage = (props: Props) => {
   const handleCountryChange = async (
     event: React.ChangeEvent<HTMLSelectElement>
   ) => {
-    const countryCode = event.target.value;
-    const statesData = await fetchStates(countryCode);
-    setStates(statesData || []);
+    console.log(event.target.value , "event")
+    const countryName = event.target.value;
+    setSelectedCountry(countryName);
+    // const statesData = await fetchStates(countryCode);
+    // setStates(statesData || []);
   };
 
   // Fetch cities data when state is selected
@@ -97,8 +122,14 @@ const SecondFormPage = (props: Props) => {
   };
 
   const onSubmitFinal = (values: form2Values) => {
+
+    const formValuesWithDropdownData = {
+      ...values,
+      selectedCountry,  
+    };
+
     if (typeof window !== 'undefined') {
-      localStorage.setItem('form2Values', JSON.stringify(values));
+      localStorage.setItem('form2Values', JSON.stringify(formValuesWithDropdownData));
       handleNextStep();
     } else {
       // Handle the case where localStorage is not available
@@ -149,13 +180,13 @@ const SecondFormPage = (props: Props) => {
               ></div>
               <div className="flex justify-between mt-2">
               <div className="w-1/2  flex text-center items-center justify-center text-lg z-10 mt-[-11px]">
-                <div className="w-6 h-6 bg-[#f7f2ff] rounded-full z-10">
-                <div className="w-2 h-2 bg-[#6b3bd0] mt-2 ml-2 rounded-full"></div>
-                </div>
+              <div className="w-7 h-7 bg-[#f7f2ff] rounded-full  z-10">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="#6b3bd0" className="w-7 h-7 "><path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.857-9.809a.75.75 0 00-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5z" clipRule="evenodd" /></svg>   
+                  </div>
               </div>
                 <div className="w-1/2  flex text-center items-center justify-center text-lg z-10 mt-[-11px]">
-                  <div className="w-6 h-6 bg-[#f7f2ff] rounded-full ">
-                    <div className="w-2 h-2 bg-[#6b3bd0] mt-2 ml-2 rounded-full"></div>
+                <div className="w-7 h-7 bg-[#f7f2ff] rounded-full  z-10">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="#6b3bd0" className="w-7 h-7 "><path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.857-9.809a.75.75 0 00-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5z" clipRule="evenodd" /></svg>   
                   </div>
                 </div>
               </div>
@@ -235,18 +266,19 @@ const SecondFormPage = (props: Props) => {
                   Country
                 </label>
                 <Field
-                  name="country"
-                  component="select"
-                  className="border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                  onChange={handleCountryChange}
-                >
-                  <option value="">Select Country</option>
-                  {countries.map((country: any) => (
-                    <option key={country.iso2} value={country.iso2}>
-                      {country.name}
-                    </option>
-                  ))}
-                </Field>
+                    name="country"
+                    component="select"
+                    className="border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                    onChange={handleCountryChange}
+                  >
+                    <option value=""> {selectedCountry ?? initialValues.selectedCountry} </option>
+                    {countries.map((country: any) => (
+                      <option key={country} value={country}>
+                        {country}
+                      </option>
+                    ))}
+
+                  </Field>
               </div>
 
               {/* State dropdown */}

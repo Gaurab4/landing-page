@@ -18,7 +18,7 @@ interface FormValues {
 interface form2Values {
   address1?:string;
   pincode?:string;
-  country?:string;
+  selectedCountry?:string;
   state?:string;
   city?:string;
 }
@@ -145,7 +145,7 @@ const ConfirmationFormPage = (props: Props) => {
             <label className="block text-sm font-semibold mb-2" htmlFor="country">
               Country
             </label>
-            <p className="border p-2 w-56 rounded-lg border-lime-600">{secondFormValues.country}</p>
+            <p className="border p-2 w-56 rounded-lg border-lime-600">{secondFormValues.selectedCountry}</p>
           </div>
 
           {/* State  */}
